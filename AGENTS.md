@@ -3,13 +3,22 @@
 This file provides guidance to agents when working with code in this repository.
 
 ## Project status
-Phase 0 only — no application code exists yet. All work so far is planning documents in `OnboardMate_Phase0_Starter/docs/` and `OnboardMate_Phase0_Starter/plans/`. Do not assume source files or a `package.json` exist.
+**Phase 1 complete.** Next.js application scaffolded at the workspace root. UI-only pages and layout components are implemented. No Supabase integration, no real authentication, no database migrations, and no AI integration yet.
 
-## Planned stack
-Next.js App Router · TypeScript strict mode · Tailwind CSS · shadcn/ui · Supabase Auth/PostgreSQL/Storage · pgvector · provider-agnostic LLM and embedding adapters.
+Planning documents are in `docs/` (moved from `OnboardMate_Phase0_Starter/docs/`).
 
-## Commands (not yet applicable — project not scaffolded)
-When the project is initialized, commands will follow standard Next.js + Supabase conventions. Phase 1 acceptance gate: `npm run build` must succeed before moving on.
+## Active stack
+Next.js 15 App Router · TypeScript strict mode · Tailwind CSS · shadcn/ui patterns · Lucide icons · class-variance-authority · clsx · tailwind-merge.
+
+Supabase Auth/PostgreSQL/Storage · pgvector · provider-agnostic LLM and embedding adapters — **planned for Phase 2+**.
+
+## Commands
+```bash
+npm run dev      # start development server
+npm run build    # production build (Phase 1 acceptance gate — must pass)
+npm run lint     # ESLint
+npm run start    # start production server
+```
 
 ## Critical architectural rules (non-negotiable)
 - Roles are **organization-scoped** via `organization_members`; never derive permissions from a global role on `profiles`.
