@@ -1,8 +1,13 @@
-import { type NextRequest } from 'next/server'
-import { updateSession } from './lib/supabase/update-session'
+import { NextResponse, type NextRequest } from 'next/server'
 
-export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+/**
+ * Demo MVP middleware — passthrough only.
+ * Supabase Auth integration is deferred; this ensures the demo runs without
+ * requiring Supabase credentials. Static assets and API routes are excluded
+ * by the matcher below.
+ */
+export function middleware(request: NextRequest) {
+  return NextResponse.next({ request })
 }
 
 export const config = {

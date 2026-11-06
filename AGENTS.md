@@ -3,14 +3,24 @@
 This file provides guidance to agents when working with code in this repository.
 
 ## Project status
-**Phase 1 complete.** Next.js application scaffolded at the workspace root. UI-only pages and layout components are implemented. No Supabase integration, no real authentication, no database migrations, and no AI integration yet.
+**Demo MVP complete.** Next.js application with a functional AI Onboarding Agent powered by a mock (or real OpenAI-compatible) backend. No Supabase, no database, no production auth. All data is synthetic Nexora Technologies fixtures.
 
-Planning documents are in `docs/` (moved from `OnboardMate_Phase0_Starter/docs/`).
+Planning documents are in `docs/`. Phase 2A plan is in `plans/phase-2a-plan.md` (deferred).
 
 ## Active stack
 Next.js 15 App Router · TypeScript strict mode · Tailwind CSS · shadcn/ui patterns · Lucide icons · class-variance-authority · clsx · tailwind-merge.
 
-Supabase Auth/PostgreSQL/Storage · pgvector · provider-agnostic LLM and embedding adapters — **planned for Phase 2+**.
+Supabase Auth/PostgreSQL/Storage · pgvector · production auth — **deferred to future phases**.
+
+## AI Agent architecture
+- `src/lib/fixtures/nexora-data.ts` — single source of truth for all demo data.
+- `src/lib/ai/types.ts` — shared AI types (ChatMessage, ChatResponse, Citation).
+- `src/lib/ai/tools.ts` — server-side read-only tools (getOnboardingProgress, getPendingTasks, searchKnowledgeBase).
+- `src/lib/ai/mock-provider.ts` — keyword-matched deterministic mock (no API key needed).
+- `src/lib/ai/real-provider.ts` — OpenAI-compatible provider (activated by OPENAI_API_KEY).
+- `src/app/api/ai/chat/route.ts` — server-side POST endpoint; picks real or mock automatically.
+
+To enable real AI: add `OPENAI_API_KEY=sk-...` to `.env.local`. Optional: `OPENAI_COMPATIBLE_BASE_URL` and `OPENAI_MODEL`.
 
 ## Commands
 ```bash
